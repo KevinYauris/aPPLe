@@ -60,3 +60,4 @@
 			</div><!-- /.navbar-collapse -->
 		</div><!--- /continer -->
 	</nav><!-- /navbar -->
+	<div class="container-fluid">

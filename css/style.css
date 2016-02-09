@@ -126,10 +126,6 @@ p.alamat{
 .container-fluid{font-size:0.85em;}
 
 /* tabel */
-
-/*#tblPembelian tr td{padding:5px;color:#000;}*/
-#tblPembelian tr : hover{background:#BBDFF0}
-#tblPembelian tr:last-child{background:#2F71AA;color:#fff;}
 th{text-align:center;background:navy;color:#fff;}
 
 
@@ -147,10 +143,13 @@ th{text-align:center;background:navy;color:#fff;}
   fieldset { display: table-cell; }
 }
 
-/* laporan-laporan */
-#namaToko, #judulLaporan{font-size:1.4em;}
 
 #tabelpeminjaman {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+#tabelalatrusak {
+    margin-left: 200px;
+    margin-right: 200px;
 }

@@ -45,7 +45,7 @@
 							$c=1;
 							$qri = "SELECT * FROM alat";
 							$hsl = querydb($qri);
-							while($rek = arraydb($hsl)){
+							while(($rek = arraydb($hsl)) && ($c <= 7)){
 								if($rek['ketersediaan']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Available</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Not Available</span>";}
 							 echo "<tr class=\"$klsBaris\">";
 							 echo "<td align='center'>".$c."</td>";

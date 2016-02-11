@@ -43,9 +43,9 @@
 			$chart->setDataSet($dataSet);	
 			
 			$chart->setTitle("Statistik Umum Peminjaman Barang");
-			$chart->render("generated/demo3.png");	
+			$chart->render("generated/Peminjaman.png");	
 			?>
-			<img alt="Pie chart"  src="generated/demo3.png" style="border: 1px solid gray;"/>
+			<img alt="Pie chart"  src="generated/Peminjaman.png" style="border: 1px solid gray;"/>
 
 		
 

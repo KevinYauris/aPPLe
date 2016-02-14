@@ -3,6 +3,9 @@ $(document).ready(function(){
 		//mengaktifkan tooltip	
 		$('[data-toggle="tooltip"]').tooltip();
 		
+
+
+		////////////// DATA ALAT ////////////////
 		$("#btnBarangTambah").click(function(){
 			$.ajax({url:'alat_add.php',
 				success:function(html){
@@ -94,6 +97,8 @@ $(document).ready(function(){
 				//alert(kdRow);
 			};
 		});
+
+		////////////// DATA PEMINJAMAN ////////////////
 		
 		
 	

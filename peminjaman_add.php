@@ -1,75 +1,67 @@
 <?php
-if(session_status()!==2)session_start();//>=php 5.4
-if(!isset($_SESSION['SES_LOGIN'])){
-	header('location:../home');
- }
-require_once "dbconnect/dbconnect.php";
+	if(session_status()!==2)session_start();//>=php 5.4
+	if(!isset($_SESSION['SES_LOGIN'])){
+		header('location:../home');
+	 }
+	require_once "dbconnect/dbconnect.php";
+	require_once "functions.php";
+	opendb();
 
-opendb();
+	$kode =buatKode("peminjaman","");
 
-//data:{ubahBarang:'',kdBarang:kdBarang},
-
-if(isset($_POST['ubahAlat'])){
-	
-	$idAlat = trim($_POST['idAlat']);	
-	
-	//cari data item barang
-	$qri = "SELECT * FROM alat WHERE id_alat='$idAlat'";
-	$res = querydb($qri);
-	$rek = arraydb($res);
-	
-	$namaAlat = $rek['nama_alat'];
-	$lokasi = $rek['lokasi'];
-	$kategori = $rek['kategori'];
-	$kondisi = $rek['kondisi'];
-	$ketersediaan = $rek['ketersediaan'];
-
-	//cari data kondisi
-	$qri2 = "SELECT kondisi FROM alat WHERE id_alat='$idAlat'";
-	$res2 = querydb($qri2);	
-}
-
-?>
-<div class="panel panel-primary alert alert-dissmisable alert-warning" id="panelBarangTambah">
-	<div class="panel-heading"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;UBAH DATA ALAT
+	if(isset($_POST['tambahPeminjaman'])){
+		
+		$idAlat = trim($_POST['idAlat']);	
+		
+		//cari data item barang
+		$qri = "SELECT * FROM alat WHERE id_alat='$idAlat'";
+		$res = querydb($qri);
+		$rek = arraydb($res);
+		
+		$namaAlat = $rek['nama_alat'];
+	}
+?>   
+   
+<div class="panel panel-primary alert alert-dissmisable alert-info" id="panelBarangTambah">
+	<div class="panel-heading"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;TAMBAH DATA ALAT
 		<div type="button" class="close" data-dismiss="alert">&times;</div>
 	</div>
 	<div class="panel-body">
 		<form class="form-horizontal" action="" method="post" name="formBarang" id="formBarang" target="" enctype="multipart/form-data" >
 			<div class="form-group form-group-sm">
-				<label for="idAlat" class="col-sm-3 control-label pad-right-zero">ID Alat :</label>
+				<label for="idPeminjaman" class="col-sm-3 control-label pad-right-zero">Kode :</label>
 				<div class="col-sm-5">
+					<input type="text" class="form-control input-sm" value="<?php echo $kode?>" id="idPeminjaman" name="idPeminjaman" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label for="idAlat" class="col-sm-3 control-label pad-right-zero">ID Alat :</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control input-sm" value="<?php echo $idAlat?>" id="idAlat" name="idAlat" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
 				<label for="nama alat" class="col-sm-3 control-label pad-right-zero">Nama Alat :</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control input-sm" name="txtNama" id="txtNama" value="<?php echo $namaAlat?>" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
+					<input type="text" class="form-control input-sm" value="<?php echo $namaAlat?>" id="namaAlat" name="namaAlat" readonly="readonly">
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
 				<label for="lokasi barang" class="col-sm-3 control-label pad-right-zero">Lokasi :</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control input-sm" name="txtLokasi" id="txtLokasi" value="<?php echo $lokasi?>" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
+					<input type="text" class="form-control input-sm" name="txtLokasi" id="txtLokasi" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
 				<label for="kategori" class="col-sm-3 control-label pad-right-zero">Kategori :</label>
 				<div class="col-sm-5">
 					<select class="form-control" name="txtKategori" id="txtKategori" required>
-						<?php
-							while($rek2=arraydb($res2)){
-								if($kategori==$rek2['kategori']){$plh='selected';}else{$plh='';}
-							}
-						?>
-
-						<option value="" <?php echo "$plh"?>>---Pilih---</option>
-						<option value="Laptop" <?php echo "$plh"?>>LAPTOP</option>
-						<option value="Sound" <?php echo "$plh"?>>SOUND</option>
-						<option value="Proyektor" <?php echo "$plh"?>>PROYEKTOR</option>
-						<option value="Kabel" <?php echo "$plh"?>>KABEL</option>
-						<option value="Lain-lain" <?php echo "$plh"?>>LAIN-LAIN</option>
+						<option value="">---Pilih---</option>
+						<option value="Laptop">LAPTOP</option>
+						<option value="Sound">SOUND</option>
+						<option value="Proyektor">PROYEKTOR</option>
+						<option value="Kabel">KABEL</option>
+						<option value="Lain-lain">LAIN-LAIN</option>
 					</select>
 				</div>
 			</div>
@@ -96,7 +88,7 @@ if(isset($_POST['ubahAlat'])){
 			</div>
 			
 		   
-			<div class="col-sm-2 col-sm-offset-3"><input type="submit" name="btnBarangSimpan" id="btnBarangSimpan" value=" Simpan " class="btn btn-primary btn-sm" data-id="2" /> </div>
+			<div class="col-sm-2 col-sm-offset-3"><input type="submit" name="btnBarangSimpan" id="btnBarangSimpan" value=" Simpan " class="btn btn-primary btn-sm" data-id="1" /> </div>
 		</form>
 	</div><!-- /panel body -->	
 </div><!-- /panel -->
@@ -125,4 +117,4 @@ if(isset($_POST['ubahAlat'])){
 		$('[data-toggle="tooltip"]').tooltip();
 		
 	});	
-</script>
+</script>		

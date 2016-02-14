@@ -26,7 +26,7 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DATA PEMELIHARAAN</div>
 			<div class="panel-body">
-				<p><button class="btn btn-info btn-sm" id="btnBarangTambah">Tambah Data</button></p>
+				<p><button class="btn btn-info btn-sm" id="btnPemeliharaanTambah">Tambah Data</button></p>
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-condensed table-hover">
 						<tr>
@@ -55,8 +55,8 @@
 								 	echo "<td align='center'>".$rek['start_broken']."</td>";
 								 	echo "<td align='center'>".$rek['start_repair']."</td>";
 									echo "<td align='center'>".$rek['finish_repair']."</td>";
-								 	echo "<td align='center'><button class=\"btn btn-warning btn-xs btnBarangUbah\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit Data\"><span class=\"glyphicon glyphicon-pencil\"></span></button></td>";
-								 	echo "<td align='center'><button class=\"btn btn-danger btn-xs btnBarangHapus\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"glyphicon glyphicon-remove\"></span></button></td>";
+								 	echo "<td align='center'><button class=\"btn btn-warning btn-xs btnPemeliharaanUbah\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit Data\"><span class=\"glyphicon glyphicon-pencil\"></span></button></td>";
+								 	echo "<td align='center'><button class=\"btn btn-danger btn-xs btnPemeliharaanHapus\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"glyphicon glyphicon-remove\"></span></button></td>";
 								 	echo "<tr>";
 								}
 							 	$c++;

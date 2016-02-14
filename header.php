@@ -40,10 +40,10 @@
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 			  
 			   <ul class="nav navbar-nav navbar-right">
-			   <li><a href="?open=home"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
-				<li><a href="?open=home"><span class="glyphicon glyphicon-eject"></span>&nbsp;Peminjaman</a></li>
-				<li><a href="?open=home"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Pemeliharaan</a></li>
-				<li><a href="?open=home"><span class="glyphicon glyphicon-hdd"></span>&nbsp;Data Alat</a></li>
+			   <li><a href="home.php"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+				<li><a href="peminjaman.php"><span class="glyphicon glyphicon-eject"></span>&nbsp;Peminjaman</a></li>
+				<li><a href="pemeliharaan.php"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Pemeliharaan</a></li>
+				<li><a href="alat.php"><span class="glyphicon glyphicon-hdd"></span>&nbsp;Data Alat</a></li>
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 				  <span class="glyphicon glyphicon-duplicate"></span>&nbsp;Statistik <span class="caret"></span></a>

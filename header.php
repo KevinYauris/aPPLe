@@ -41,6 +41,7 @@
 			  
 			   <ul class="nav navbar-nav navbar-right">
 			   <li><a href="home.php"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
+				<?php if (isset($_COOKIE["LOGEE"])) { ?>
 				<li><a href="peminjaman.php"><span class="glyphicon glyphicon-eject"></span>&nbsp;Peminjaman</a></li>
 				<li><a href="pemeliharaan.php"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Pemeliharaan</a></li>
 				<li><a href="alat.php"><span class="glyphicon glyphicon-hdd"></span>&nbsp;Data Alat</a></li>
@@ -53,11 +54,18 @@
 					<li role="separator" class="divider"></li>
 					<li><a href="?open=lap_stock"><span class="glyphicon glyphicon-file"></span>&nbsp;Statistik Umum</a></li>
 				  </ul>
-				</li>
-				<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
-				
+				</li>				
+					<li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+				<?php } else { ?> 
+					<li><a href="login_form.php"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Login</a></li>
+				<?php } ?>
 			  </ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!--- /continer -->
 	</nav><!-- /navbar -->
 	<div class="container-fluid">
+	<?php 
+		if (!isset($_COOKIE["LOGEE"])) {
+			header("Location: http://localhost/aPPLe-master/home.php");
+		}
+	?>

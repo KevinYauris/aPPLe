@@ -28,19 +28,20 @@
 				</div>
 				<div class="panel-body">
 					<span id="loginMsg"></span>	
-					<form class="form" role="form" action="" method="post" name="loginForm" id="loginForm">
+					<form class="form" role="form" action="validasi_login.php" method="post" name="loginForm" id="loginForm">
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-								<input type="text" class="form-control" placeholder="Username" name="username" id="username" required autofocus/>
+								<input type="text" class="form-control" placeholder="Username" name="uid" id="uid" required autofocus/>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="input-group">
 								<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-								<input type="password" class="form-control" placeholder="" value="" name="password" id="password" required />
+								<input type="password" class="form-control" placeholder="" value="" name="pwd" id="pwd" required />
 							</div>
 						</div>
+						<input type="hidden" id="checkUser" name="checkUser" value="1a1">
 						<input type="submit" class="btn btn-primary btn-block" value="SUBMIT" name="" id="loginBtn">
 					</form>
 				</div>

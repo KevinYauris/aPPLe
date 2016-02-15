@@ -59,8 +59,8 @@
 									echo "<td align='center'>".$rek['waktu_peminjaman']."</td>";
 									echo "<td align='center'>".$rek['durasi']."</td>";
 									echo "<td align='center'>".$stat."</td>";
-									echo "<td align='center'><button class=\"btn btn-warning btn-xs btnPeminjamanUbah\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit Data\"><span class=\"glyphicon glyphicon-pencil\"></span></button></td>";
-									echo "<td align='center'><button class=\"btn btn-danger btn-xs btnPeminjamanHapus\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"glyphicon glyphicon-remove\"></span></button></td>";
+									echo "<td align='center'><button class=\"btn btn-warning btn-xs btnUbahPeminjaman\" data-val=\"$rek[id_peminjaman]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit Data\"><span class=\"glyphicon glyphicon-pencil\"></span></button></td>";
+									echo "<td align='center'><button class=\"btn btn-danger btn-xs btnHapusPeminjaman\" data-val=\"$rek[id_peminjaman]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"glyphicon glyphicon-remove\"></span></button></td>";
 									echo "<tr>";
 									$c++;
 								}

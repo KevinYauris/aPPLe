@@ -99,7 +99,113 @@ $(document).ready(function(){
 		});
 
 		////////////// DATA PEMINJAMAN ////////////////
-		
+		$(".btnTambahPeminjaman").click(function(){
+			var idAlat = $(this).data('val');
+			
+			$.ajax({
+				type:"POST",
+				url :"peminjaman_add.php",
+				data:{tambahPeminjaman:'',idAlat:idAlat},
+				//dataType: "json",
+				success:function(resp){
+					$("#dataTambahUbah").hide();
+					$("#dataTambahUbah").html(resp);
+					$("#dataTambahUbah").fadeIn(1000);
+				},
+				error: function() {$('#dataTambahUbah').html('<h3>Ajax Bermasalah !!!</h3>')},
+			});
+		});	
+		//tambah & ubah data peminjaman
+		$(document).on('click',"#btnSimpanPeminjaman",function () {
+			$("#formPeminjaman").submit(function(e){return false;});
+			var id = $(this).data('id');
+			if(id==1){
+				var idPeminjaman = $('#idPeminjaman').val();
+				var idAlat = $('#idAlat').val();
+				var namaAlat = $('#namaAlat').val();
+				var noIdentitas = $('#noIdentitas').val();
+				var namaPeminjam = $('#namaPeminjam').val();
+				var kategoriPeminjam = $('#kategoriPeminjam').val();
+				var kegiatan = $('#kegiatan').val();
+				var waktuPeminjaman = $('#waktuPeminjaman').val();
+				var durasi = $('#durasi').val();
+				var status = $('#status').val();
+				var data={tambahPeminjaman:'',idPeminjaman:idPeminjaman,idAlat:idAlat,namaAlat:namaAlat,noIdentitas:noIdentitas,namaPeminjam:namaPeminjam,kategoriPeminjam:kategoriPeminjam,kegiatan:kegiatan,waktuPeminjaman:waktuPeminjaman,durasi:durasi,status:status};
+			}else if(id==2){
+				var idPeminjaman = $('#idPeminjaman').val();
+				var idAlat = $('#idAlat').val();
+				var namaAlat = $('#namaAlat').val();
+				var noIdentitas = $('#noIdentitas').val();
+				var namaPeminjam = $('#namaPeminjam').val();
+				var kategoriPeminjam = $('#kategoriPeminjam').val();
+				var kegiatan = $('#kegiatan').val();
+				var waktuPeminjaman = $('#waktuPeminjaman').val();
+				var durasi = $('#durasi').val();
+				var status = $('#status').val();
+				var data={ubahPeminjaman:'',idPeminjaman:idPeminjaman,idAlat:idAlat,namaAlat:namaAlat,noIdentitas:noIdentitas,namaPeminjam:namaPeminjam,kategoriPeminjam:kategoriPeminjam,kegiatan:kegiatan,waktuPeminjaman:waktuPeminjaman,durasi:durasi,status:status};
+			}	
+			if(noIdentitas.length<=0){$('#noIdentitas').focus();$('.modal-body').html('<p>Nomor Identitas Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(namaPeminjam.length<=0){$('#namaPeminjam').focus();$('.modal-body').html('<p>Nama Peminjam Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(kategoriPeminjam.length<=0){$('#kategoriPeminjam').focus();$('.modal-body').html('<p>Kategori Peminjam Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(kegiatan.length<=0){$('#kegiatan').focus();$('.modal-body').html('<p>Kegiatan Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(waktuPeminjaman.length<=0){$('#waktuPeminjaman').focus();$('.modal-body').html('<p>Waktu Peminjaman Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(durasi.length<=0){$('#durasi').focus();$('.modal-body').html('<p>Durasi Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(status.length<=0){$('#status').focus();$('.modal-body').html('<p>Status Peminjaman Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else{
+				$.ajax({
+					type:"POST",
+					url:'peminjaman_proses.php',
+					data:data,
+					dataType: "json",
+					success:function(resp){
+						$("#alertMsg").html(resp.msg1);
+						window.setTimeout(function(){window.location=window.location;}, 1000);
+					},
+					
+					error: function() {$('#alertMsg').html('<h3>Ajax Bermasalah !!!</h3>')},
+					 //error: function(xmlHttpRequest, status, err){}
+				});
+			}; 
+			
+			//alert('id : '+id);	
+		});
+		//tampilkan form ubah data alat
+		$(".btnUbahPeminjaman").click(function(){
+			var idPeminjaman = $(this).data('val');
+			
+			$.ajax({
+				type:"POST",
+				url :"peminjaman_edit.php",
+				data:{ubahPeminjaman:'',idPeminjaman:idPeminjaman},
+				//dataType: "json",
+				success:function(resp){
+					$("#dataTambahUbah").hide();
+					$("#dataTambahUbah").html(resp);
+					$("#dataTambahUbah").fadeIn(1000);
+				},
+				error: function() {$('#dataTambahUbah').html('<h3>Ajax Bermasalah !!!</h3>')},
+			});
+		});	
+		//Hapus data alat
+		$(".btnHapusPeminjaman").click(function(){
+			var r = confirm('ANDA YAKIN INGIN MENGHAPUS DATA INI ???');
+			if(r==true){
+				var idPeminjaman = $(this).data('val');
+				$.ajax({
+					type:"POST",
+					url:'peminjaman_proses.php',
+					data:{hapusPeminjaman:'',idPeminjaman:idPeminjaman},
+					dataType: "json",
+					success:function(resp){
+						$("#dataTambahUbah").html(resp.msg1);
+						window.setTimeout(function(){window.location=window.location;}, 1000);
+					},
+					error: function() {$('#dataTambahUbah').html('<h3>Ajax Bermasalah !!!</h3>')},
+					 
+				}); 
+				//alert(kdRow);
+			};
+		});
 		
 	
 });	

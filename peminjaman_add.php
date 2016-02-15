@@ -1,8 +1,8 @@
 <?php
-	if(session_status()!==2)session_start();//>=php 5.4
+	/*if(session_status()!==2)session_start();//>=php 5.4
 	if(!isset($_SESSION['SES_LOGIN'])){
 		header('location:../home');
-	 }
+	 }*/
 	require_once "dbconnect/dbconnect.php";
 	require_once "functions.php";
 	opendb();
@@ -23,11 +23,11 @@
 ?>   
    
 <div class="panel panel-primary alert alert-dissmisable alert-info" id="panelBarangTambah">
-	<div class="panel-heading"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;TAMBAH DATA ALAT
+	<div class="panel-heading"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;TAMBAH DATA PEMINJAMAN
 		<div type="button" class="close" data-dismiss="alert">&times;</div>
 	</div>
 	<div class="panel-body">
-		<form class="form-horizontal" action="" method="post" name="formBarang" id="formBarang" target="" enctype="multipart/form-data" >
+		<form class="form-horizontal" action="" method="post" name="formPeminjaman" id="formPeminjaman" target="" enctype="multipart/form-data" >
 			<div class="form-group form-group-sm">
 				<label for="idPeminjaman" class="col-sm-3 control-label pad-right-zero">Kode :</label>
 				<div class="col-sm-5">
@@ -47,48 +47,60 @@
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
-				<label for="lokasi barang" class="col-sm-3 control-label pad-right-zero">Lokasi :</label>
+				<label for="no identitas" class="col-sm-3 control-label pad-right-zero">No. Identitas :</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control input-sm" name="txtLokasi" id="txtLokasi" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
+					<input type="text" class="form-control input-sm" name="noIdentitas" id="noIdentitas" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
-				<label for="kategori" class="col-sm-3 control-label pad-right-zero">Kategori :</label>
+				<label for="nama peminjam" class="col-sm-3 control-label pad-right-zero">Nama Peminjam :</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control input-sm" name="namaPeminjam" id="namaPeminjam" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label for="kategori peminjam" class="col-sm-3 control-label pad-right-zero">Kategori Peminjam :</label>
 				<div class="col-sm-5">
-					<select class="form-control" name="txtKategori" id="txtKategori" required>
+					<select class="form-control" name="kategoriPeminjam" id="kategoriPeminjam" required>
 						<option value="">---Pilih---</option>
-						<option value="Laptop">LAPTOP</option>
-						<option value="Sound">SOUND</option>
-						<option value="Proyektor">PROYEKTOR</option>
-						<option value="Kabel">KABEL</option>
-						<option value="Lain-lain">LAIN-LAIN</option>
+						<option value="Mahasiswa">Mahasiswa</option>
+						<option value="Dosen">Dosen</option>
+						<option value="Lain-lain">Lain-lain</option>
 					</select>
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
-				<label for="kondisi" class="col-sm-3 control-label pad-right-zero">Kondisi :</label>
-				<div class="col-sm-5">
-					<select class="form-control" name="txtKondisi" id="txtKondisi" required>
-						<option value="">---Pilih---</option>
-						<option value="Baik">BAIK</option>
-						<option value="Rusak">RUSAK</option>
-						<option value="Hilang">HILANG</option>
-					</select>
+				<label for="kegiatan" class="col-sm-3 control-label pad-right-zero">Kegiatan :</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control input-sm" name="kegiatan" id="kegiatan" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
-				<label for="ketersediaan" class="col-sm-3 control-label pad-right-zero">Ketersediaan :</label>
+				<label for="waktu peminjaman" class="col-sm-3 control-label pad-right-zero">Waktu Peminjaman :</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control input-sm" name="waktuPeminjaman" id="waktuPeminjaman" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 50 character" required autofocus>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label for="durasi" class="col-sm-3 control-label pad-right-zero">Durasi :</label>
+				<div class="col-sm-9">
+					<input type="number" step="1" class="form-control input-sm" name="durasi" id="durasi" value="" maxlength="50" data-toggle="tooltip" data-placement="left" title="Maksimum 6 jam" required autofocus>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label for="status" class="col-sm-3 control-label pad-right-zero">Status :</label>
 				<div class="col-sm-5">
-					<select class="form-control" name="txtKetersediaan" id="txtKetersediaan" required>
+					<select class="form-control" name="status" id="status" required>
 						<option value="">---Pilih---</option>
-						<option value="Y">Tersedia</option>
-						<option value="T">Tidak Tersedia</option>
+						<option value="Y">Sudah Dikembalikan</option>
+						<option value="-">Sudah Dibooking</option>
+						<option value="T">Sedang Dipinjam</option>
 					</select>
 				</div>
 			</div>
 			
 		   
-			<div class="col-sm-2 col-sm-offset-3"><input type="submit" name="btnBarangSimpan" id="btnBarangSimpan" value=" Simpan " class="btn btn-primary btn-sm" data-id="1" /> </div>
+			<div class="col-sm-2 col-sm-offset-3"><input type="submit" name="btnSimpanPeminjaman" id="btnSimpanPeminjaman" value=" Simpan " class="btn btn-primary btn-sm" data-id="1" /> </div>
 		</form>
 	</div><!-- /panel body -->	
 </div><!-- /panel -->

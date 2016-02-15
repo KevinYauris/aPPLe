@@ -4,15 +4,18 @@ require_once "functions.php";
 opendb();
 
 
-if(isset($_POST['addAlat'])){
+if(isset($_POST['tambahPeminjaman'])){
 	# BACA DATA DALAM FORM, masukkan datake variabel
 	$errMsg = "";
+	$idPeminjaman=secure(trim($_POST['idPeminjaman']));
 	$idAlat=secure(trim($_POST['idAlat']));	
-	$namaAlat=strtoupper(secure(trim($_POST['namaAlat'])));
-	$lokasi=secure(trim($_POST['lokasi']));
-	$kategori=secure(trim($_POST['kategori']));
-	$kondisi=secure(trim($_POST['kondisi']));
-	$ketersediaan=secure(trim($_POST['ketersediaan']));
+	$noIdentitas=secure(trim($_POST['noIdentitas']));
+	$namaPeminjam=secure(trim($_POST['namaPeminjam']));
+	$kategoriPeminjam=secure(trim($_POST['kategoriPeminjam']));
+	$kegiatan=secure(trim($_POST['kegiatan']));
+	$waktuPeminjaman=secure(trim($_POST['waktuPeminjaman']));
+	$durasi=secure(trim($_POST['durasi']));
+	$status=secure(trim($_POST['status']));
 		
 	
 		# SIMPAN DATA KE DATABASE. 
@@ -20,36 +23,28 @@ if(isset($_POST['addAlat'])){
 		//$kodeBaru	= buatKode("ma_barang", "");
 		//$txtPassword2 = MD5($password);
 		
-		//Periksa apakah nM barang sudah ada atau belum ?
-		$qri ="SELECT * FROM alat WHERE nama_alat='$namaAlat'";
-		$res = querydb($qri);
-		$row = numrows($res);
-		
-		if($row<1){
-			//nama barang belum ada -> insert
-			$sql  = "INSERT INTO alat (id_alat, nama_alat, lokasi,kategori,kondisi,ketersediaan)
-					VALUES ('$idAlat', '$namaAlat','$lokasi','$kategori','$kondisi','$ketersediaan')";
-			$res = querydb($sql);
-			if($res){
-				
-				$errMsg .= "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
-				$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
-				$errMsg .= "SUKSESS !!! Data sudah disimpan !!!";
-				$errMsg .= "</div>";
-				
-			}else{
-				$errMsg .= "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
-				$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
-				$errMsg .= "GAGAL !!! Data tidak bisa disimpan !!!";
-				$errMsg .= "</div>";
-				
-			}
-		}else{
-
-			$errMsg .= "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">";
+		$sql  = "INSERT INTO peminjaman (id_peminjaman, id_alat, no_identitas, nama_peminjam,kategori_peminjam,kegiatan, waktu_peminjaman, durasi, status)
+				VALUES ('$idPeminjaman','$idAlat', '$noIdentitas','$namaPeminjam','$kategoriPeminjam','$kegiatan','$waktuPeminjaman','$durasi','$status')";
+		$res = querydb($sql);
+		/*if ($status == 'Y') {
+			$ketersediaan = 'Y';
+		} else {
+			$ketersediaan = 'T';
+		}
+		$qry ="UPDATE alat SET ketersediaan='$ketersediaan' WHERE id_alat='$idAlat'";
+		$hsl = querydb($qry);*/
+		if($res){
+			
+			$errMsg .= "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
 			$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
-			$errMsg .= "Barang dengan nama <b>$inpNama</b> sudah ada dalam database, gunakan nama yang lain !!!";
-			$errMsg .= "</div>"; 
+			$errMsg .= "SUKSESS !!! Data sudah disimpan !!!";
+			$errMsg .= "</div>";
+			
+		}else{
+			$errMsg .= "<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
+			$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
+			$errMsg .= "GAGAL !!! Data tidak bisa disimpan !!!";
+			$errMsg .= "</div>";
 		}
 				
 	//$errMsg = $inpNama;
@@ -58,23 +53,25 @@ if(isset($_POST['addAlat'])){
 	echo json_encode($data);
 }	
 
-IF(isset($_POST['ubahAlat'])){
-	# BACA DATA DALAM FORM, masukkan datake variabel
+IF(isset($_POST['ubahPeminjaman'])){
 	$errMsg = "";
+	$idPeminjaman=secure(trim($_POST['idPeminjaman']));
 	$idAlat=secure(trim($_POST['idAlat']));	
-	$namaAlat=strtoupper(secure(trim($_POST['namaAlat'])));
-	$lokasi=secure(trim($_POST['lokasi']));
-	$kategori=secure(trim($_POST['kategori']));
-	$kondisi=secure(trim($_POST['kondisi']));
-	$ketersediaan=secure(trim($_POST['ketersediaan']));
+	$noIdentitas=secure(trim($_POST['noIdentitas']));
+	$namaPeminjam=secure(trim($_POST['namaPeminjam']));
+	$kategoriPeminjam=secure(trim($_POST['kategoriPeminjam']));
+	$kegiatan=secure(trim($_POST['kegiatan']));
+	$waktuPeminjaman=secure(trim($_POST['waktuPeminjaman']));
+	$durasi=secure(trim($_POST['durasi']));
+	$status=secure(trim($_POST['status']));
 
 		# SIMPAN DATA KE DATABASE. 
 		// Jika tidak menemukan error, simpan data ke database
 		//$kodeBaru	= buatKode("ma_user", "UID");
 		//$txtPassword2 = MD5($inpPassword);
 		
-		$qry="UPDATE alat SET nama_alat='$namaAlat',lokasi='$lokasi',kategori='$kategori',kondisi='$kondisi',ketersediaan='$ketersediaan'
-			 WHERE id_alat='$idAlat'";
+		$qry="UPDATE peminjaman SET no_identitas='$noIdentitas', nama_peminjam='$namaPeminjam',kategori_peminjam='$kategoriPeminjam',kegiatan='$kegiatan', waktu_peminjaman='$waktuPeminjaman', durasi='$durasi', status='$status'
+			 WHERE id_Peminjaman='$idPeminjaman'";
 		$hsl = querydb($qry);
 		if($hsl){			
 			
@@ -103,13 +100,13 @@ IF(isset($_POST['ubahAlat'])){
 	echo json_encode($data);
 }	
 
-if(isset($_POST['hapusBarang'])){
+if(isset($_POST['hapusPeminjaman'])){
 
 	$errMsg = "";
 	
-	$idAlat=$_POST['idAlat'];	
+	$idPeminjaman=$_POST['idPeminjaman'];
 	
-	$qri="DELETE FROM alat WHERE id_alat='".$idAlat."'";	
+	$qri="DELETE FROM peminjaman WHERE id_peminjaman='".$idPeminjaman."'";	
 	$res=querydb($qri);
 	if($res){
 		$errMsg .="<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";

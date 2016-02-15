@@ -1,13 +1,13 @@
 <?php
-	if(session_status()!==2)session_start();//>=php 5.4
+	/*if(session_status()!==2)session_start();//>=php 5.4
 	if(!isset($_SESSION['SES_LOGIN'])){
 		header('location:../home');
-	 }
+	 }*/
 	require_once "dbconnect/dbconnect.php";
 	require_once "functions.php";
 	opendb();
 
-	$kode =buatKode("alat","");
+	$kode =buatKode("alat","A");
 ?>   
    
 <div class="panel panel-primary alert alert-dissmisable alert-info" id="panelBarangTambah">

@@ -39,9 +39,16 @@ if(isset($_POST['tambahPeminjaman'])){
 		$qry ="UPDATE alat SET ketersediaan='$ketersediaan' WHERE id_alat='$idAlat'";
 		$hsl = querydb($qry);*/
 		if($res){
-			$qry="UPDATE alat SET ketersediaan='T'
-			 WHERE id_alat='$idAlat'";
-		$hsl = querydb($qry);
+			if($status == 'Y') {
+				$qry2="UPDATE alat SET ketersediaan='Y'
+			 	WHERE id_alat='$idAlat'";
+			 	$hsl2 = querydb($qry2);
+			} else {
+				$qry2="UPDATE alat SET ketersediaan='T'
+			 	WHERE id_alat='$idAlat'";
+			 	$hsl2 = querydb($qry2);
+			}
+			
 			$errMsg .= "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
 			$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
 			$errMsg .= "SUKSESS !!! Data sudah disimpan !!!";
@@ -58,6 +65,7 @@ if(isset($_POST['tambahPeminjaman'])){
 	//convert data menjadi json format
 	$data = array('msg1'=>$errMsg,'msg2'=>'');
 	echo json_encode($data);
+	//RedirectToPeminjaman('peminjaman.php', false);
 }	
 //EDIT PEMINJAMAN
 IF(isset($_GET['idPeminjaman'])){
@@ -80,6 +88,16 @@ IF(isset($_GET['idPeminjaman'])){
 		$qry="UPDATE peminjaman SET no_identitas='$noIdentitas', nama_peminjam='$namaPeminjam',kategori_peminjam='$kategoriPeminjam',kegiatan='$kegiatan', waktu_peminjaman='$waktuPeminjaman', durasi='$durasi', status='$status'
 			 WHERE id_Peminjaman='$idPeminjaman'";
 		$hsl = querydb($qry);
+
+		if($status == 'Y') {
+			$qry2="UPDATE alat SET ketersediaan='Y'
+		 	WHERE id_alat='$idAlat'";
+		 	$hsl2 = querydb($qry2);
+		} else {
+			$qry2="UPDATE alat SET ketersediaan='T'
+		 	WHERE id_alat='$idAlat'";
+		 	$hsl2 = querydb($qry2);
+		}
 	
 	
 	RedirectToPeminjaman('peminjaman.php', false);

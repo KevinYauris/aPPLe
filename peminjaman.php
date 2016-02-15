@@ -22,6 +22,7 @@
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DAFTAR PEMINJAMAN ALAT</div>
 			<div class="panel-body">
 				<p><a class="btn btn-info btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php">Pinjam Alat</a></p>
+				<p><a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman.php?booking=1">Daftar Booking Alat</a></p>
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-condensed table-hover">
 						<tr>
@@ -40,10 +41,19 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM peminjaman ORDER BY id_alat ASC LIMIT $posisi, $batas";
-							$hsl = querydb($qri);
+
+							if(isset($_GET['booking']))$booking = $_GET['booking'];
+							if (empty($booking)) {
+								$qri = "SELECT * FROM peminjaman ORDER BY id_peminjaman ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							} else {
+								$qri = "SELECT * FROM peminjaman WHERE status = '-' ORDER BY id_peminjaman ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							}
+
+							
 							while($rek = arraydb($hsl)){
-								if($rek['status']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Sudah Dikembalikan</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Sedang Dipinjam</span>";}
+								if($rek['status']=="Y"){$klsBaris="";$stat="<span class='label label-success'>Sudah Dikembalikan</span>";}else if($rek['status']=="T"){$klsBaris="danger";$stat="<span class='label label-danger'>Sedang Dipinjam</span>";} else {$klsBaris="warning";$stat="<span class='label label-warning'>Sudah Dibooking</span>";} 
 							 	$qri2 = "SELECT * FROM alat WHERE id_alat = '$rek[id_alat]'";
 							 	$hsl2 = querydb($qri2);
 							 	while($rek2 = arraydb($hsl2)){

@@ -38,6 +38,7 @@ if(isset($_POST['tambahPemeliharaan'])){
 				
 	$data = array('msg1'=>$errMsg,'msg2'=>'');
 	echo json_encode($data);
+	RedirectTo('pemeliharaan.php', false);
 }	
 //EDIT PEMELIHARAAN
 IF(isset($_GET['idPemeliharaan'])){
@@ -48,9 +49,9 @@ IF(isset($_GET['idPemeliharaan'])){
 	$startRepair=htmlspecialchars($_POST['startRepair']);
 	$finishRepair=htmlspecialchars($_POST['finishRepair']);
 		
-		$qry="UPDATE pemeliharaan SET id_kerusakan='$idPemeliharaan', id_alat='$idAlat',start_broken='$startBroken',start_repair='$startRepair', finish_repair='$finishRepair'
-			 WHERE id_kerusakan='$idPemeliharaan'";
-		$hsl = querydb($qry);
+	$qry="UPDATE pemeliharaan SET id_kerusakan='$idPemeliharaan', id_alat='$idAlat',start_broken='$startBroken',start_repair='$startRepair', finish_repair='$finishRepair'
+		 WHERE id_kerusakan='$idPemeliharaan'";
+	$hsl = querydb($qry);
 	
 	
 	RedirectTo('pemeliharaan.php', false);

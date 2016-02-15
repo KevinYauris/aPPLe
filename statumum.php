@@ -42,7 +42,7 @@
 			$chart->setTitle("Statistik Umum Peminjaman Barang");
 			$chart->render("generated/Peminjaman.png");	
 			?>
-			<img alt="Pie chart"  src="generated/Peminjaman.png" style="border: 1px solid gray;"/>
+			<center><img alt="Pie chart"  src="generated/Peminjaman.png" style="border: 1px solid gray;"/></center>
 
 		
 

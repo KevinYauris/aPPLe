@@ -28,6 +28,10 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DATA ALAT</div>
 			<div class="panel-body">
+				<form action="searchAlat.php" method="POST">
+					<input id="key"  type="text" name="key" placeholder="Type here">
+					<input id="submit" type="submit" value="Search">
+				</form>
 				<p><button class="btn btn-info btn-sm" id="btnBarangTambah">Tambah Data</button></p>
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-condensed table-hover">

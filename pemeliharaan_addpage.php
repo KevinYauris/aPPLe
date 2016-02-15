@@ -15,7 +15,7 @@
 
 	$jml_hal = ceil($jml_data/$batas);
 	if ($jml_hal>20) {$jml_hal=20 AND $batas=ceil($jml_data/$jml_hal);$posisi=($halaman-1) * $batas;}
-	$file="page.php?open=peminjaman";
+	$file="pagecontrol.php?open=pemeliharaan_addpage";
 
 	include "header.php";
 ?>   
@@ -44,7 +44,7 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y'";
+							$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' ORDER BY id_alat ASC LIMIT $posisi, $batas";
 							$hsl = querydb($qri);
 							while(($rek = arraydb($hsl)) && ($c <= 7)){
 								if($rek['ketersediaan']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Available</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Not Available</span>";}

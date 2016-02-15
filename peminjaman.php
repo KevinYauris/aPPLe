@@ -14,7 +14,7 @@
 
 	$jml_hal = ceil($jml_data/$batas);
 	if ($jml_hal>20) {$jml_hal=20 AND $batas=ceil($jml_data/$jml_hal);$posisi=($halaman-1) * $batas;}
-	$file="page.php?open=peminjaman";
+	$file="pagecontrol.php?open=peminjaman";
 ?>
 
 <div class="row" id="tabelpeminjaman">
@@ -40,7 +40,7 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM peminjaman";
+							$qri = "SELECT * FROM peminjaman ORDER BY id_alat ASC LIMIT $posisi, $batas";
 							$hsl = querydb($qri);
 							while($rek = arraydb($hsl)){
 								if($rek['status']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Sudah Dikembalikan</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Sedang Dipinjam</span>";}

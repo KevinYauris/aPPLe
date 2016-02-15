@@ -48,7 +48,7 @@ if(isset($_POST['addAlat'])){
 
 			$errMsg .= "<div class=\"alert alert-warning alert-dismissible\" role=\"alert\">";
 			$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
-			$errMsg .= "Barang dengan nama <b>$inpNama</b> sudah ada dalam database, gunakan nama yang lain !!!";
+			$errMsg .= "Barang dengan nama <b>$namaAlat</b> sudah ada dalam database, gunakan nama yang lain !!!";
 			$errMsg .= "</div>"; 
 		}
 				
@@ -116,7 +116,10 @@ if(isset($_POST['hapusBarang'])){
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
 		$errMsg .= "SUKSES !!! Data sudah dihapus!!!";
 		$errMsg .= "</div>";
-		$qre="DELETE FROM peminjaman WHERE id_alat='".$idAlat."'";
+		$qri2="DELETE FROM peminjaman WHERE id_alat='".$idAlat."'";	
+		$res2=querydb($qri2);
+		$qri3="DELETE FROM pemeliharaan WHERE id_alat='".$idAlat."'";	
+		$res3=querydb($qri3);
 	}else{
 		$errMsg .="<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";

@@ -39,30 +39,21 @@ if(isset($_POST['tambahPemeliharaan'])){
 	$data = array('msg1'=>$errMsg,'msg2'=>'');
 	echo json_encode($data);
 }	
-//EDIT PEMINJAMAN
-IF(isset($_GET['idPeminjaman'])){
+//EDIT PEMELIHARAAN
+IF(isset($_GET['idPemeliharaan'])){
 	$errMsg = "";
-	$idPeminjaman=$_GET['idPeminjaman'];
+	$idPemeliharaan=$_GET['idPemeliharaan'];
 	$idAlat=htmlspecialchars($_POST['idAlat']);	
-	$noIdentitas=htmlspecialchars($_POST['noIdentitas']);
-	$namaPeminjam=htmlspecialchars($_POST['namaPeminjam']);
-	$kategoriPeminjam=htmlspecialchars($_POST['kategoriPeminjam']);
-	$kegiatan=htmlspecialchars($_POST['kegiatan']);
-	$waktuPeminjaman=htmlspecialchars($_POST['waktuPeminjaman']);
-	$durasi=htmlspecialchars($_POST['durasi']);
-	$status=htmlspecialchars($_POST['status']);
-
-		# SIMPAN DATA KE DATABASE. 
-		// Jika tidak menemukan error, simpan data ke database
-		//$kodeBaru	= buatKode("ma_user", "UID");
-		//$txtPassword2 = MD5($inpPassword);
+	$startBroken=htmlspecialchars($_POST['startBroken']);
+	$startRepair=htmlspecialchars($_POST['startRepair']);
+	$finishRepair=htmlspecialchars($_POST['finishRepair']);
 		
-		$qry="UPDATE peminjaman SET no_identitas='$noIdentitas', nama_peminjam='$namaPeminjam',kategori_peminjam='$kategoriPeminjam',kegiatan='$kegiatan', waktu_peminjaman='$waktuPeminjaman', durasi='$durasi', status='$status'
-			 WHERE id_Peminjaman='$idPeminjaman'";
+		$qry="UPDATE pemeliharaan SET id_kerusakan='$idPemeliharaan', id_alat='$idAlat',start_broken='$startBroken',start_repair='$startRepair', finish_repair='$finishRepair'
+			 WHERE id_kerusakan='$idPemeliharaan'";
 		$hsl = querydb($qry);
 	
 	
-	RedirectToPeminjaman('peminjaman.php', false);
+	RedirectTo('pemeliharaan.php', false);
 }	
 
 if(isset($_POST['hapusPemeliharaan'])){

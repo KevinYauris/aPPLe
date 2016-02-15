@@ -39,7 +39,9 @@ if(isset($_POST['tambahPeminjaman'])){
 		$qry ="UPDATE alat SET ketersediaan='$ketersediaan' WHERE id_alat='$idAlat'";
 		$hsl = querydb($qry);*/
 		if($res){
-			
+			$qry="UPDATE alat SET ketersediaan='T'
+			 WHERE id_alat='$idAlat'";
+		$hsl = querydb($qry);
 			$errMsg .= "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
 			$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
 			$errMsg .= "SUKSESS !!! Data sudah disimpan !!!";

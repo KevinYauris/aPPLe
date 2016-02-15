@@ -14,7 +14,7 @@
 
 	$jml_hal = ceil($jml_data/$batas);
 	if ($jml_hal>20) {$jml_hal=20 AND $batas=ceil($jml_data/$jml_hal);$posisi=($halaman-1) * $batas;}
-	$file="page.php?open=alat";
+	$file="pagecontrol.php?open=alat";
 ?>
 
 <div class="row">
@@ -28,10 +28,12 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DATA ALAT</div>
 			<div class="panel-body">
-				<form action="searchAlat.php" method="POST">
-					<input id="key"  type="text" name="key" placeholder="Type here">
-					<input id="submit" type="submit" value="Search">
-				</form>
+				<p>
+					<form action="searchAlat.php" method="POST">
+						<input id="key"  type="text" name="key" placeholder="Type here">
+						<input id="submit" type="submit" value="Search">
+					</form>
+				</p>
 				<p><button class="btn btn-info btn-sm" id="btnBarangTambah">Tambah Data</button></p>
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-condensed table-hover">
@@ -47,10 +49,10 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM alat";
+							$qri = "SELECT * FROM alat ORDER BY id_alat ASC LIMIT $posisi, $batas";
 							$hsl = querydb($qri);
-							while(($rek = arraydb($hsl)) && ($c <= 7)){
-								if($rek['ketersediaan']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Available</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Not Available</span>";}
+							while($rek = arraydb($hsl)){
+								if($rek['ketersediaan']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Tersedia</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Tidak Tersedia</span>";}
 							 echo "<tr class=\"$klsBaris\">";
 							 echo "<td align='center'>".$c."</td>";
 							 echo "<td align='center'>".$rek['id_alat']."</td>";

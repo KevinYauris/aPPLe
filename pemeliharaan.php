@@ -14,7 +14,7 @@
 
 	$jml_hal = ceil($jml_data/$batas);
 	if ($jml_hal>20) {$jml_hal=20 AND $batas=ceil($jml_data/$jml_hal);$posisi=($halaman-1) * $batas;}
-	$file="page.php?open=pemeliharaan";
+	$file="pagecontrol.php?open=pemeliharaan";
 ?>
 
 <div class="row" id="tabelalatrusak">
@@ -41,7 +41,7 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM pemeliharaan";
+							$qri = "SELECT * FROM pemeliharaan ORDER BY id_kerusakan ASC LIMIT $posisi, $batas";
 							$hsl = querydb($qri);
 							while($rek = arraydb($hsl)){
 								$qri2 = "SELECT * FROM alat WHERE id_alat = '$rek[id_alat]'";
@@ -55,7 +55,7 @@
 								 	echo "<td align='center'>".$rek['start_broken']."</td>";
 								 	echo "<td align='center'>".$rek['start_repair']."</td>";
 									echo "<td align='center'>".$rek['finish_repair']."</td>";
-								 	echo "<td align='center'><button class=\"btn btn-warning btn-xs btnPemeliharaanUbah\" data-val=\"$rek[id_alat]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit Data\"><span class=\"glyphicon glyphicon-pencil\"></span></button></td>";
+								 	echo "<td align='center'><a href='pemeliharaan_edit.php?idPemeliharaan=$rek[id_kerusakan]' class=\"btn btn-warning btn-xs btnPemeliharaanUbah\" data-val=\"$rek[id_kerusakan]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Edit Data\"><span class=\"glyphicon glyphicon-pencil\"></span></a></td>";
 								 	echo "<td align='center'><button class=\"btn btn-danger btn-xs btnHapusPemeliharaan\" data-val=\"$rek[id_kerusakan]\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Hapus Data\" ><span class=\"glyphicon glyphicon-remove\"></span></button></td>";
 								 	echo "<tr>";
 								}

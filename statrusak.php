@@ -45,7 +45,7 @@
 			$chart->setTitle("Statistik Umum Kerusakan Barang");
 			$chart->render("generated/Rusak.png");	
 			?>
-			<img alt="Pie chart"  src="generated/Rusak.png" style="border: 1px solid gray;"/>
+			<center><img alt="Pie chart"  src="generated/Rusak.png" style="border: 1px solid gray;"/></center>
 
 		
 

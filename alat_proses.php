@@ -116,6 +116,7 @@ if(isset($_POST['hapusBarang'])){
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
 		$errMsg .= "SUKSES !!! Data sudah dihapus!!!";
 		$errMsg .= "</div>";
+		$qre="DELETE FROM peminjaman WHERE id_alat='".$idAlat."'";
 	}else{
 		$errMsg .="<div class=\"alert alert-danger alert-dismissible\" role=\"alert\">";
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";

@@ -199,30 +199,20 @@ $(document).ready(function(){
 		//tambah & ubah data peminjaman
 		$(document).on('click',"#btnSimpanPemeliharaan",function () {
 			$("#formPemeliharaan").submit(function(e){return false;});
-			var id = $(this).data('id');
-			var idPeminjaman = $('#idPeminjaman').val();
+			var idPemeliharaan = $('#idPemeliharaan').val();
 			var idAlat = $('#idAlat').val();
-			var namaAlat = $('#namaAlat').val();
-			var noIdentitas = $('#noIdentitas').val();
-			var namaPeminjam = $('#namaPeminjam').val();
-			var kategoriPeminjam = $('#kategoriPeminjam').val();
-			var kegiatan = $('#kegiatan').val();
-			var waktuPeminjaman = $('#waktuPeminjaman').val();
-			var durasi = $('#durasi').val();
-			var status = $('#status').val();
-			var data={tambahPeminjaman:'',idPeminjaman:idPeminjaman,idAlat:idAlat,namaAlat:namaAlat,noIdentitas:noIdentitas,namaPeminjam:namaPeminjam,kategoriPeminjam:kategoriPeminjam,kegiatan:kegiatan,waktuPeminjaman:waktuPeminjaman,durasi:durasi,status:status};
+			var startBroken = $('#startBroken').val();
+			var startRepair = $('#startRepair').val();
+			var finishRepair = $('#finishRepair').val();
+			var data={tambahPemeliharaan:'',idPemeliharaan:idPemeliharaan,idAlat:idAlat,startBroken:startBroken,startRepair:startRepair,finishRepair:finishRepair};
 		
-			if(noIdentitas.length<=0){$('#noIdentitas').focus();$('.modal-body').html('<p>Nomor Identitas Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(namaPeminjam.length<=0){$('#namaPeminjam').focus();$('.modal-body').html('<p>Nama Peminjam Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(kategoriPeminjam.length<=0){$('#kategoriPeminjam').focus();$('.modal-body').html('<p>Kategori Peminjam Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(kegiatan.length<=0){$('#kegiatan').focus();$('.modal-body').html('<p>Kegiatan Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(waktuPeminjaman.length<=0){$('#waktuPeminjaman').focus();$('.modal-body').html('<p>Waktu Peminjaman Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(durasi.length<=0){$('#durasi').focus();$('.modal-body').html('<p>Durasi Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(status.length<=0){$('#status').focus();$('.modal-body').html('<p>Status Peminjaman Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			if(startBroken.length<=0){$('#startBroken').focus();$('.modal-body').html('<p>Waktu Mulai Rusak Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(startRepair.length<=0){$('#startRepair').focus();$('.modal-body').html('<p>Waktu Mulai Perbaikan Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
+			else if(finishRepair.length<=0){$('#finishRepair').focus();$('.modal-body').html('<p>Waktu Selesai Perbaikan Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
 			else{
 				$.ajax({
 					type:"POST",
-					url:'peminjaman_proses.php',
+					url:'pemeliharaan_proses.php',
 					data:data,
 					dataType: "json",
 					success:function(resp){
@@ -238,14 +228,14 @@ $(document).ready(function(){
 			//alert('id : '+id);	
 		});
 		//Hapus data alat
-		$(".btnHapusPeminjaman").click(function(){
+		$(".btnHapusPemeliharaan").click(function(){
 			var r = confirm('ANDA YAKIN INGIN MENGHAPUS DATA INI ???');
 			if(r==true){
-				var idPeminjaman = $(this).data('val');
+				var idPemeliharaan = $(this).data('val');
 				$.ajax({
 					type:"POST",
-					url:'peminjaman_proses.php',
-					data:{hapusPeminjaman:'',idPeminjaman:idPeminjaman},
+					url:'pemeliharaan_proses.php',
+					data:{hapusPemeliharaan:'',idPemeliharaan:idPemeliharaan},
 					dataType: "json",
 					success:function(resp){
 						$("#dataTambahUbah").html(resp.msg1);

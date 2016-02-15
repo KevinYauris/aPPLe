@@ -66,6 +66,6 @@
 	<div class="container-fluid">
 	<?php 
 		if (!isset($_COOKIE["LOGEE"])) {
-			header("Location: http://localhost/aPPLe-master/home.php");
+			header("Location: home.php");
 		}
 	?>

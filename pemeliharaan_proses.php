@@ -3,13 +3,13 @@ require_once "dbconnect/dbconnect.php";
 require_once "functions.php";
 opendb();
 
-function RedirectToPeminjaman($url, $permanent = false)
+function RedirectTo($url, $permanent = false)
 {
     header('Location: ' . $url, true, $permanent ? 301 : 302);
     exit();
 }
 
-if(isset($_POST['tambahPeminjaman'])){
+if(isset($_POST['tambahPemeliharaan'])){
 	# BACA DATA DALAM FORM, masukkan datake variabel
 	$errMsg = "";
 	$idPeminjaman=secure(trim($_POST['idPeminjaman']));
@@ -21,12 +21,6 @@ if(isset($_POST['tambahPeminjaman'])){
 	$waktuPeminjaman=secure(trim($_POST['waktuPeminjaman']));
 	$durasi=secure(trim($_POST['durasi']));
 	$status=secure(trim($_POST['status']));
-		
-	
-		# SIMPAN DATA KE DATABASE. 
-		// Jika tidak menemukan error, simpan data ke database
-		//$kodeBaru	= buatKode("ma_barang", "");
-		//$txtPassword2 = MD5($password);
 		
 		$sql  = "INSERT INTO peminjaman (id_peminjaman, id_alat, no_identitas, nama_peminjam,kategori_peminjam,kegiatan, waktu_peminjaman, durasi, status)
 				VALUES ('$idPeminjaman','$idAlat', '$noIdentitas','$namaPeminjam','$kategoriPeminjam','$kegiatan','$waktuPeminjaman','$durasi','$status')";
@@ -83,7 +77,7 @@ IF(isset($_GET['idPeminjaman'])){
 	RedirectToPeminjaman('peminjaman.php', false);
 }	
 
-if(isset($_POST['hapusPeminjaman'])){
+if(isset($_POST['hapusPemeliharaan'])){
 
 	$errMsg = "";
 	

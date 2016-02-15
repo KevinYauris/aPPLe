@@ -157,3 +157,8 @@ th{text-align:center;background:navy;color:#fff;}
 #btnBack {
   margin-bottom: 20px;    
 }
+
+#panelEditPeminjaman {
+  width: 45%;
+  margin-left: 28%;
+}

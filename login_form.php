@@ -22,6 +22,7 @@
   <body>
 	<div class="container">	
 		<div class="vertical-center">
+				<p id="title"> LAB-INVENTORY MANAGEMENT </p>
 			<div class="panel panel-primary center-block">
 				<div class="panel-heading">
 					<h3 class="panel-title text-center">Login</h3>

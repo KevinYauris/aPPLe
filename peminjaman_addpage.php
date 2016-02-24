@@ -9,7 +9,7 @@
 	if(isset($_GET['halaman']))$halaman = $_GET['halaman'];
 	if (empty($halaman)){$posisi=0; $halaman=1;} else {$posisi=($halaman-1) * $batas;} 
 
-	$qry ="SELECT * FROM alat";
+	$qry ="SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y'";
 	$hsl = querydb($qry);
 	$jml_data = numrows($hsl);
 
@@ -31,6 +31,12 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DATA ALAT YANG DAPAT DIPINJAM</div>
 			<div class="panel-body">
+				<p> <a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php">Semua</a>
+				<a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php?kategori=1">Laptop</a>
+				<a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php?kategori=2">Sound</a>
+				<a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php?kategori=3">Kabel</a>
+				<a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php?kategori=4">Proyektor</a>
+				<a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php?kategori=5">Lain-lain</a></p>
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-condensed table-hover">
 						<tr>
@@ -44,8 +50,28 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' ORDER BY id_alat ASC LIMIT $posisi, $batas";
-							$hsl = querydb($qri);
+							if(isset($_GET['kategori']))$kategori = $_GET['kategori'];
+							if (empty($kategori)) {
+								$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							} else if ($kategori == '1'){
+								$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' AND kategori='Laptop' ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							} else if ($kategori == '2'){
+								$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' AND kategori='Sound' ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							} else if ($kategori == '3'){
+								$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' AND kategori='Kabel' ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							} else if ($kategori == '4'){
+								$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' AND kategori='Proyektor' ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							} else {
+								$qri = "SELECT * FROM alat WHERE kondisi='Baik' AND ketersediaan='Y' AND kategori='Lain-lain' ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							}
+
+							
 							while(($rek = arraydb($hsl)) && ($c <= 7)){
 								if($rek['ketersediaan']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Available</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Not Available</span>";}
 							 	echo "<tr class=\"$klsBaris\">";

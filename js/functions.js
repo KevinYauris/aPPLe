@@ -206,10 +206,11 @@ $(document).ready(function(){
 			var finishRepair = $('#finishRepair').val();
 			var data={tambahPemeliharaan:'',idPemeliharaan:idPemeliharaan,idAlat:idAlat,startBroken:startBroken,startRepair:startRepair,finishRepair:finishRepair};
 		
-			if(startBroken.length<=0){$('#startBroken').focus();$('.modal-body').html('<p>Waktu Mulai Rusak Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(startRepair.length<=0){$('#startRepair').focus();$('.modal-body').html('<p>Waktu Mulai Perbaikan Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else if(finishRepair.length<=0){$('#finishRepair').focus();$('.modal-body').html('<p>Waktu Selesai Perbaikan Tidak Boleh Kosong<p>');$('#modalUser').modal('show');}
-			else{
+			if(startBroken.length<=0){
+				$('#startBroken').focus();
+				$('.modal-body').html('<p>Waktu Mulai Rusak Tidak Boleh Kosong<p>');
+				$('#modalUser').modal('show');
+			} else {
 				$.ajax({
 					type:"POST",
 					url:'pemeliharaan_proses.php',

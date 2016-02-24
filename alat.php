@@ -10,7 +10,7 @@
 
 	$qry ="SELECT * FROM alat";
 	$hsl = querydb($qry);
-	$jml_data = numrows($hsl);
+	$jml_data = numrows($hsl); 
 
 	$jml_hal = ceil($jml_data/$batas);
 	if ($jml_hal>20) {$jml_hal=20 AND $batas=ceil($jml_data/$jml_hal);$posisi=($halaman-1) * $batas;}
@@ -29,7 +29,7 @@
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DATA ALAT</div>
 			<div class="panel-body">
 				<p>
-					<form action="searchAlat.php" method="POST">
+					<form action="alat.php?key=" method="POST">
 						<input id="key"  type="text" name="key" placeholder="Type here">
 						<input id="submit" type="submit" value="Search">
 					</form>
@@ -49,8 +49,16 @@
 						</tr>
 						<?php
 							$c=1;
-							$qri = "SELECT * FROM alat ORDER BY id_alat ASC LIMIT $posisi, $batas";
-							$hsl = querydb($qri);
+							if (isset($_POST['key'])) {
+								$key = $_POST['key'];
+								$keys = $key . "%";
+								$qri = "SELECT * FROM alat WHERE nama_alat LIKE '". $keys. "'";
+								$hsl = querydb($qri);
+							} else {
+								$qri = "SELECT * FROM alat ORDER BY id_alat ASC LIMIT $posisi, $batas";
+								$hsl = querydb($qri);
+							}
+							
 							while($rek = arraydb($hsl)){
 								if($rek['ketersediaan']=="Y"){$klsBaris="";$stat="<span class='label label-info'>Tersedia</span>";}else{$klsBaris="danger";$stat="<span class='label label-danger'>Tidak Tersedia</span>";}
 							 echo "<tr class=\"$klsBaris\">";

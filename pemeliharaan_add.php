@@ -49,22 +49,41 @@
 			<div class="form-group form-group-sm">
 				<label for="mulai rusak" class="col-sm-3 control-label pad-right-zero">Mulai Rusak :</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control input-sm" name="startBroken" id="startBroken" value="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Masukkan tanggal yang valid" required autofocus>
+					<input type="text" class="form-control input-sm" name="startBroken" id="datepicker" value="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Masukkan tanggal yang valid" required autofocus>
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
 				<label for="mulai perbaikan" class="col-sm-3 control-label pad-right-zero">Mulai Perbaikan :</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control input-sm" name="startRepair" id="startRepair" value="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Masukkan tanggal yang valid" required autofocus>
+					<input type="text" class="form-control input-sm" name="startRepair" id="datepicker">
 				</div>
 			</div>
 			<div class="form-group form-group-sm">
 				<label for="selesai perbaikan" class="col-sm-3 control-label pad-right-zero">Selesai Perbaikan :</label>
 				<div class="col-sm-9">
-					<input type="text" class="form-control input-sm" name="finishRepair" id="finishRepair" value="" maxlength="50" data-toggle="tooltip" data-placement="top" title="Masukkan tanggal yang valid" required autofocus>
+					<input type="text" id="datepicker" class="form-control input-sm" name="finishRepair">
 				</div>
 			</div>
-			
+
+			<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
 		   
 			<div class="col-sm-2 col-sm-offset-3"><input type="submit" name="btnSimpanPemeliharaan" id="btnSimpanPemeliharaan" value=" Simpan " class="btn btn-primary btn-sm" data-id="1" /> </div>
 		</form>
@@ -88,7 +107,7 @@
 	</div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-		
+
 <script type="text/javascript" charset="utf-8">
 	$(document).ready(function(){
 		//mengaktifkan tooltip	

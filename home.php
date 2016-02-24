@@ -30,9 +30,9 @@
 			  </button>
 			  <a class="navbar-brand" href="#"><img class="img-responsive" src="img/screen65.png" ></a>
 			  <div class="navbar-title hidden-xs">
-				<a href="#" class="nama-app">Labyrin</a>
-				<p class="alamat">Institut Teknologi Bandung,&nbsp;Bandung</p>
-				<p class="alamat">Telp. : 022 1234567&nbsp;&nbsp;Fax : 022 1234 5678</p>
+				<a href="#" class="nama-app">LAB-INVENTORY MANAGEMENT</a>
+				<p class="alamat">Unit Dukungan Teknis,&nbsp;</p>
+				<p class="alamat">Gd. Benny Subianto (Labtek V)&nbsp;&nbsp;ITB</p>
 			  </div>
 			</div><!-- /navbar header -->
 			

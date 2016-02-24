@@ -23,6 +23,10 @@ if(isset($_POST['tambahPemeliharaan'])){
 	$res = querydb($sql);
 	
 	if($res){
+		if ($finishRepair == '0000-00-00'){
+			$sql2  = "UPDATE alat SET ketersediaan='T' WHERE id_alat = '$idAlat'";
+			$res2 = querydb($sql2);
+		}
 		
 		$errMsg .= "<div class=\"alert alert-success alert-dismissible\" role=\"alert\">";
 		$errMsg .= "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>";
@@ -35,10 +39,8 @@ if(isset($_POST['tambahPemeliharaan'])){
 		$errMsg .= "GAGAL !!! Data tidak bisa disimpan !!!";
 		$errMsg .= "</div>";
 	}
-				
 	$data = array('msg1'=>$errMsg,'msg2'=>'');
 	echo json_encode($data);
-	RedirectTo('pemeliharaan.php', false);
 }	
 //EDIT PEMELIHARAAN
 IF(isset($_GET['idPemeliharaan'])){

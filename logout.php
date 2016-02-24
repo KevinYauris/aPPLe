@@ -77,6 +77,6 @@
 	</center>
 	
 	<?php
-	header('Refresh: 5; URL=http://localhost/aPPLe-master/home.php');
+	header('Refresh: 5; URL=http://localhost/aPPLe/home.php');
 	include("footer.php");	
 	?>

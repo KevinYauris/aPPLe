@@ -6,5 +6,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/functions.js"></script>
+	<script src="datepicker/js/bootstrap-datepicker.min.js"></script>
   </body>
 </html>

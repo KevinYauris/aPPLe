@@ -21,8 +21,8 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;DAFTAR PEMINJAMAN ALAT</div>
 			<div class="panel-body">
-				<p><a class="btn btn-info btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php">Pinjam Alat</a></p>
-				<p><a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman.php?booking=1">Daftar Booking Alat</a></p>
+				<p><a class="btn btn-info btn-sm" id="btnPeminjamanTambah" href="peminjaman_addpage.php">Pinjam Alat</a>
+				<a class="btn btn-default btn-sm" id="btnPeminjamanTambah" href="peminjaman.php?booking=1">Daftar Booking Alat</a></p>
 				<div class="table-responsive">
 					<table class="table table-striped table-bordered table-condensed table-hover">
 						<tr>

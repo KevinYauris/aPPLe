@@ -27,6 +27,12 @@ if(isset($_POST['ubahAlat'])){
 	//cari data kondisi
 	$qri2 = "SELECT kondisi FROM alat WHERE id_alat='$idAlat'";
 	$res2 = querydb($qri2);	
+
+	$qri3 = "SELECT kategori FROM alat WHERE id_alat='$idAlat'";
+	$res3 = querydb($qri3);	
+
+	$qri4 = "SELECT ketersediaan FROM alat WHERE id_alat='$idAlat'";
+	$res4 = querydb($qri4);
 }
 
 ?>
@@ -58,18 +64,36 @@ if(isset($_POST['ubahAlat'])){
 				<label for="kategori" class="col-sm-3 control-label pad-right-zero">Kategori :</label>
 				<div class="col-sm-5">
 					<select class="form-control" name="txtKategori" id="txtKategori" required>
+						<option value="">---Pilih---</option>
 						<?php
-							while($rek2=arraydb($res2)){
-								if($kategori==$rek2['kategori']){$plh='selected';}else{$plh='';}
+							while($rek3=arraydb($res3)){
+								if($kategori=='Laptop') {
+									echo "<option value='Laptop' selected>LAPTOP</option>";
+								} else {
+									echo "<option value='Laptop'>LAPTOP</option>";
+								}
+								if($kategori=='Sound') {
+									echo "<option value='Sound' selected>SOUND</option>";
+								} else {
+									echo "<option value='Sound'>SOUND</option>";
+								}
+								if($kategori=='Proyektor') {
+									echo "<option value='Proyektor' selected>PROYEKTOR</option>";
+								} else {
+									echo "<option value='Proyektor'>PROYEKTOR</option>";
+								}
+								if($kategori=='Kabel') {
+									echo "<option value='Kabel' selected>KABEL</option>";
+								} else {
+									echo "<option value='Kabel'>KABEL</option>";
+								}
+								if($kategori=='Lain-lain') {
+									echo "<option value='Lain-lain' selected>LAIN-LAIN</option>";
+								} else {
+									echo "<option value='Lain-lain'>LAIN-LAIN</option>";
+								}
 							}
 						?>
-
-						<option value="" <?php echo "$plh"?>>---Pilih---</option>
-						<option value="Laptop" <?php echo "$plh"?>>LAPTOP</option>
-						<option value="Sound" <?php echo "$plh"?>>SOUND</option>
-						<option value="Proyektor" <?php echo "$plh"?>>PROYEKTOR</option>
-						<option value="Kabel" <?php echo "$plh"?>>KABEL</option>
-						<option value="Lain-lain" <?php echo "$plh"?>>LAIN-LAIN</option>
 					</select>
 				</div>
 			</div>
@@ -78,9 +102,25 @@ if(isset($_POST['ubahAlat'])){
 				<div class="col-sm-5">
 					<select class="form-control" name="txtKondisi" id="txtKondisi" required>
 						<option value="">---Pilih---</option>
-						<option value="Baik">BAIK</option>
-						<option value="Rusak">RUSAK</option>
-						<option value="Hilang">HILANG</option>
+						<?php
+							while($rek2=arraydb($res2)){
+								if($kondisi=='Baik') {
+									echo "<option value='Baik' selected>BAIK</option>";
+								} else {
+									echo "<option value='Baik'>BAIK</option>";
+								}
+								if($kondisi=='Rusak') {
+									echo "<option value='Rusak' selected>RUSAK</option>";
+								} else {
+									echo "<option value='Rusak'>RUSAK</option>";
+								}
+								if($kondisi=='Hilang') {
+									echo "<option value='Hilang' selected>HILANG</option>";
+								} else {
+									echo "<option value='Hilang'>HILANG</option>";
+								}
+							}
+						?>
 					</select>
 				</div>
 			</div>
@@ -89,8 +129,20 @@ if(isset($_POST['ubahAlat'])){
 				<div class="col-sm-5">
 					<select class="form-control" name="txtKetersediaan" id="txtKetersediaan" required>
 						<option value="">---Pilih---</option>
-						<option value="Y">Tersedia</option>
-						<option value="T">Tidak Tersedia</option>
+						<?php
+							while($rek4=arraydb($res4)){
+								if($ketersediaan=='Y') {
+									echo "<option value='Y' selected>Tersedia</option>";
+								} else {
+									echo "<option value='Y'>Tersedia</option>";
+								}
+								if($ketersediaan=='T') {
+									echo "<option value='T' selected>Tidak Tersedia</option>";
+								} else {
+									echo "<option value='T'>Tidak Tersedia</option>";
+								}
+							}
+						?>
 					</select>
 				</div>
 			</div>

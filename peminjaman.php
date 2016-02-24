@@ -8,8 +8,14 @@
 	if(isset($_GET['halaman']))$halaman = $_GET['halaman'];
 	if (empty($halaman)){$posisi=0; $halaman=1;} else {$posisi=($halaman-1) * $batas;} 
 
-	$qry ="SELECT * FROM peminjaman";
-	$hsl = querydb($qry);
+	if(isset($_GET['booking']))$booking = $_GET['booking'];
+	if (empty($booking)) {
+		$qri = "SELECT * FROM peminjaman";
+		$hsl = querydb($qri);
+	} else {
+		$qri = "SELECT * FROM peminjaman WHERE status = '-'";
+		$hsl = querydb($qri);
+	}
 	$jml_data = numrows($hsl);
 
 	$jml_hal = ceil($jml_data/$batas);

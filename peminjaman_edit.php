@@ -29,6 +29,12 @@ if(isset($_GET['idPeminjaman'])){
 	$res2 = querydb($qri2);
 	$rek2 = arraydb($res2);
 	$namaAlat = $rek2['nama_alat'];
+
+	$qri3 = "SELECT * FROM peminjaman WHERE id_alat='$idAlat'";
+	$res3 = querydb($qri3);
+
+	$qri4 = "SELECT * FROM peminjaman WHERE id_alat='$idAlat'";
+	$res4 = querydb($qri4);
 }
 
 include "header.php";
@@ -76,9 +82,25 @@ include "header.php";
 				<div class="col-sm-5">
 					<select class="form-control" name="kategoriPeminjam" id="kategoriPeminjam" required>
 						<option value="">---Pilih---</option>
-						<option value="Mahasiswa">Mahasiswa</option>
-						<option value="Dosen">Dosen</option>
-						<option value="Lain-lain">Lain-lain</option>
+						<?php
+							while($rek3=arraydb($res3)){
+								if($kategoriPeminjam=='Mahasiswa') {
+									echo "<option value='Mahasiswa' selected>Mahasiswa</option>";
+								} else {
+									echo "<option value='Mahasiswa'>Mahasiswa</option>";
+								}
+								if($kategoriPeminjam=='Dosen') {
+									echo "<option value='Mahasiswa' selected>Mahasiswa</option>";
+								} else {
+									echo "<option value='Mahasiswa'>Mahasiswa</option>";
+								}
+								if($kategoriPeminjam=='Lain-lain') {
+									echo "<option value='Lain-lain' selected>Lain-lain</option>";
+								} else {
+									echo "<option value='Lain-lain'>Lain-lain</option>";
+								}
+							}
+						?>
 					</select>
 				</div>
 			</div>
@@ -105,9 +127,25 @@ include "header.php";
 				<div class="col-sm-5">
 					<select class="form-control" name="status" id="status" required>
 						<option value="">---Pilih---</option>
-						<option value="Y">Sudah Dikembalikan</option>
-						<option value="-">Sudah Dibooking</option>
-						<option value="T">Sedang Dipinjam</option>
+						<?php
+							while($rek4=arraydb($res4)){
+								if($status=='Y') {
+									echo "<option value='Y' selected>Sudah Dikembalikan</option>";
+								} else {
+									echo "<option value='Y'>Sudah Dikembalikan</option>";
+								}
+								if($status=='T') {
+									echo "<option value='T' selected>Sedang Dipinjam</option>";
+								} else {
+									echo "<option value='T'>Sedang Dipinjam</option>";
+								}
+								if($status=='-') {
+									echo "<option value='-' selected>Sudah Dibooking</option>";
+								} else {
+									echo "<option value='-'>Sudah Dibooking</option>";
+								}
+							}
+						?>
 					</select>
 				</div>
 			</div>
